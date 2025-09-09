@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongoc
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mern
+
+  backend:
+    build: ./server
+    container_name: backc
+    restart: always
+    env_file:
+      - ./server/.env
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    networks:
+      - mern
+
+  frontend:
+    build: ./client
+    container_name: frontc
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - mern
+
+networks:
+  mern:
+    driver: bridge
+
+volumes:
+  mongo-data: {}

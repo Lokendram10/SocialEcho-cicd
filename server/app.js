@@ -6,9 +6,11 @@
  * Email: neaz6160@gmail.com
  * Date: 19th June 2023
  */
-
 require("dotenv").config();
+const cors = require('cors');
 const express = require("express");
+const app = express();
+// app.use(cors());
 const adminRoutes = require("./routes/admin.route");
 const userRoutes = require("./routes/user.route");
 const postRoutes = require("./routes/post.route");
@@ -18,9 +20,9 @@ const search = require("./controllers/search.controller");
 const Database = require("./config/database");
 const decodeToken = require("./middlewares/auth/decodeToken");
 
-const app = express();
 
-const cors = require("cors");
+
+// const cors = require("cors");
 const morgan = require("morgan");
 const passport = require("passport");
 

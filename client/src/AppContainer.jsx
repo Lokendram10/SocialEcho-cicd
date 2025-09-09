@@ -21,7 +21,7 @@ const AppContainer = () => {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        await axios.get("/server-status");
+        await axios.get("http://localhost:4000/server-status");
       } catch (err) {
         setError("Server is down. Please try again later.");
       } finally {
